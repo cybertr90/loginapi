@@ -24,13 +24,12 @@ class User(db.Model):
     username = db.Column(db.String(20), nullable=False)
     password = db.Column(db.String(20), nullable=False)
 
+    def __repr__(self):
+        return f"<User {self.username}>"
+
 #Creating All
 with app.app_context():
     db.create_all()
-
-
-    def __repr__(self):
-        return f"<User {self.username}>"
 
 #Home
 @app.route("/")

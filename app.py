@@ -12,9 +12,6 @@ app.config['SECRET_KEY'] = "thisisasecretkey"
 
 db.init_app(app)
 
-with app.app_context():
-    db.create_all()
-
 #Create JWT for User
 def token(username):
     payload = {"sub":username,"exp":datetime.utcnow()}
@@ -26,6 +23,11 @@ class User(db.Model):
     id = db.Column(db.Integer(), primary_key=True)
     username = db.Column(db.String(20), nullable=False)
     password = db.Column(db.String(20), nullable=False)
+
+#Creating All
+with app.app_context():
+    db.create_all()
+
 
     def __repr__(self):
         return f"<User {self.username}>"
